@@ -1,5 +1,6 @@
 import streamlit as st
 from utils.pdf_loader import load_pdf
+from utils.text_chunker import chunk_text
 
 st.set_page_config(
     page_title="IntelliOps AI",
@@ -47,6 +48,22 @@ if uploaded_files:
 
         # Extract text from uploaded PDF
         pdf_text = load_pdf(save_path)
+
+        # Split extracted text into chunks
+        chunks = chunk_text(pdf_text)
+
+        st.success(f"✅ Created {len(chunks)} text chunks")
+
+        st.subheader("📄 First 3 Chunks")
+
+        for i, chunk in enumerate(chunks[:3]):
+            st.markdown(f"### Chunk {i+1}")
+            st.text_area(
+                label=f"Chunk {i+1}",
+                value=chunk,
+                height=150,
+                key=f"{uploaded_file.name}_{i}"
+            )
 
         st.subheader("📄 PDF Preview")
 
