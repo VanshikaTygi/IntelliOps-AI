@@ -1,6 +1,7 @@
 import streamlit as st
 from utils.pdf_loader import load_pdf
 from utils.text_chunker import chunk_text
+from utils.vector_store import add_chunks_to_store
 
 st.set_page_config(
     page_title="IntelliOps AI",
@@ -51,6 +52,8 @@ if uploaded_files:
 
         # Split extracted text into chunks
         chunks = chunk_text(pdf_text)
+
+        add_chunks_to_store(chunks, uploaded_file.name)
 
         st.success(f"✅ Created {len(chunks)} text chunks")
 
