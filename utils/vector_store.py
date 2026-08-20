@@ -35,3 +35,11 @@ def add_chunks_to_store(chunks, source_filename):
         documents=chunks,
         metadatas=metadatas
     )
+
+
+if __name__ == "__main__":
+    results = collection.query(
+        query_texts=["What method does this paper propose for fine-tuning language models?"],
+        n_results=2
+    )
+    print(results["documents"])
