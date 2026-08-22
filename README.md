@@ -1,53 +1,37 @@
-# IntelliOps AI
+# 🏭 IntelliOps AI
 
-## Unified Industrial Knowledge Intelligence Platform
+### Unified Industrial Knowledge Intelligence Platform
 
-### Overview
+IntelliOps AI turns scattered industrial documentation — manuals, SOPs, maintenance reports, safety documents — into a searchable, queryable knowledge system using Retrieval-Augmented Generation (RAG) and multi-agent AI.
 
-IntelliOps AI is an AI-powered Industrial Knowledge Intelligence Platform developed for the ET AI Hackathon 2026.
-
-The platform transforms scattered industrial documents into actionable operational intelligence using Retrieval-Augmented Generation (RAG), AI agents, and document intelligence.
-
-Instead of searching through hundreds of manuals, maintenance logs, inspection reports, and safety documents, engineers can interact with an intelligent AI system that provides accurate, source-backed answers and operational insights.
+Instead of manually searching through hundreds of pages of documentation, engineers will be able to ask direct questions and get accurate, source-backed answers.
 
 ---
 
-## Problem Statement
+## How it works
+Industrial PDFs → Text Extraction → Chunking → Embeddings →
+Vector Database → Retrieval → AI Agents → Actionable Answers
 
-ET AI Hackathon 2026
 
-Topic 8
+## Current Progress
 
-AI for Industrial Knowledge Intelligence:
-Unified Asset & Operations Brain
+- [x] PDF upload and text extraction (PyMuPDF)
+- [x] Text chunking (LangChain)
+- [x] Embedding generation (`sentence-transformers`)
+- [x] Vector storage and retrieval (ChromaDB) — verified working end-to-end
+- [ ] LLM-powered question answering with source citations
+- [ ] Multi-agent architecture (Supervisor, Maintenance, Safety, Compliance agents)
+- [ ] Industrial dashboard UI (risk scores, asset timelines)
 
----
+## Tech Stack
 
-## Key Features
-
-- Industrial Document Upload
-- AI Knowledge Base
-- Supervisor AI Agent
-- Maintenance Intelligence Agent
-- Safety Intelligence Agent
-- Compliance Intelligence Agent
-- Industrial Dashboard
-- Source-backed AI Responses
-
----
-
-## Technology Stack
-
-- Python
-- Streamlit
-- LangChain
-- ChromaDB
-- PyMuPDF
-- Git
-- GitHub
-
----
+- **Language:** Python
+- **UI:** Streamlit
+- **Orchestration:** LangChain
+- **Vector Database:** ChromaDB
+- **Embeddings:** `sentence-transformers` (all-MiniLM-L6-v2)
+- **Document Processing:** PyMuPDF
 
 ## Project Status
 
-Project Initialized 🚀
+🚧 Actively in development.
