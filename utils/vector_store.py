@@ -38,8 +38,19 @@ def add_chunks_to_store(chunks, source_filename):
 
 
 if __name__ == "__main__":
-    results = collection.query(
-        query_texts=["What method does this paper propose for fine-tuning language models?"],
-        n_results=2
+    import os
+    from dotenv import load_dotenv
+    from groq import Groq
+
+    load_dotenv()
+
+    client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
+
+    response = client.chat.completions.create(
+        model="openai/gpt-oss-20b",
+        messages=[
+            {"role": "user", "content": "Say hello in one short sentence."}
+        ]
     )
-    print(results["documents"])
+
+    print(response.choices[0].message.content)
