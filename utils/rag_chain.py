@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 from groq import Groq
-from vector_store import collection
+from utils.vector_store import collection
 
 load_dotenv()
 

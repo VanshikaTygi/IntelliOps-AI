@@ -2,6 +2,7 @@ import streamlit as st
 from utils.pdf_loader import load_pdf
 from utils.text_chunker import chunk_text
 from utils.vector_store import add_chunks_to_store
+from utils.rag_chain import get_answer
 
 st.set_page_config(
     page_title="IntelliOps AI",
@@ -80,3 +81,27 @@ if uploaded_files:
 
     for file in UPLOAD_DIR.iterdir():
         st.write("📄", file.name)
+
+
+st.divider()
+
+st.header("🤖 Ask IntelliOps")
+
+user_question = st.text_input("Ask a question about your uploaded documents")
+
+if st.button("Get Answer"):
+
+    if user_question:
+
+        with st.spinner("Thinking..."):
+            result = get_answer(user_question)
+
+        st.subheader("Answer")
+        st.write(result["answer"])
+
+        st.subheader("Sources")
+        for source in result["sources"]:
+            st.write(f"📄 {source}")
+
+    else:
+        st.warning("Please type a question first.")
