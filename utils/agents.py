@@ -46,6 +46,6 @@ def run_agent(role_prompt, question, n_results=3):
 
 if __name__ == "__main__":
     test_role = "You are a helpful assistant. Answer using only the provided context."
-    result = run_agent(test_role, "What method does this paper propose for fine-tuning language models?")
+    result = run_agent(test_role, "What safety measures are required for machine guarding?")
     print("ANSWER:", result["answer"])
     print("SOURCES:", result["sources"])

@@ -21,6 +21,6 @@ def run_maintenance_agent(question):
 
 
 if __name__ == "__main__":
-    result = run_maintenance_agent("What method does this paper propose for fine-tuning language models?")
+    result = run_maintenance_agent("What safety measures are required for machine guarding?")
     print("ANSWER:", result["answer"])
     print("SOURCES:", result["sources"])

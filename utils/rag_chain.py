@@ -61,6 +61,6 @@ def get_answer(question):
 
 
 if __name__ == "__main__":
-    result = get_answer("What method does this paper propose for fine-tuning language models?")
+    result = get_answer("What safety measures are required for machine guarding?")
     print("ANSWER:", result["answer"])
     print("SOURCES:", result["sources"])
