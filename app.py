@@ -2,7 +2,7 @@ import streamlit as st
 from utils.pdf_loader import load_pdf
 from utils.text_chunker import chunk_text
 from utils.vector_store import add_chunks_to_store
-from utils.rag_chain import get_answer
+from agents.supervisor import get_supervised_answer
 
 st.set_page_config(
     page_title="IntelliOps AI",
@@ -89,19 +89,23 @@ st.header("🤖 Ask IntelliOps")
 
 user_question = st.text_input("Ask a question about your uploaded documents")
 
-if st.button("Get Answer"):
+if user_question:
 
-    if user_question:
+    with st.spinner("Analyzing with relevant agents..."):
+        result = get_supervised_answer(user_question)
 
-        with st.spinner("Thinking..."):
-            result = get_answer(user_question)
+    st.subheader("🧭 Agents Involved")
+    st.write(", ".join(agent.capitalize() for agent in result["agents_used"]))
 
-        st.subheader("Answer")
-        st.write(result["answer"])
+    for response in result["responses"]:
+        st.markdown(f"### {response['agent'].capitalize()} Agent")
+        st.write(response["answer"])
 
-        st.subheader("Sources")
-        for source in result["sources"]:
+        st.caption("Sources:")
+        for source in response["sources"]:
             st.write(f"📄 {source}")
 
-    else:
-        st.warning("Please type a question first.")
+        st.divider()
+
+else:
+    st.warning("Please type a question first.")
