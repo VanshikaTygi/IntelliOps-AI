@@ -21,6 +21,6 @@ def run_compliance_agent(question):
 
 
 if __name__ == "__main__":
-    result = run_compliance_agent("What safety measures are required for machine guarding?")
+    result = run_compliance_agent("What compliance responsibilities does this document outline for employers?")
     print("ANSWER:", result["answer"])
     print("SOURCES:", result["sources"])

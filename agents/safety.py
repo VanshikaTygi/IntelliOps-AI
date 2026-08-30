@@ -22,6 +22,6 @@ def run_safety_agent(question):
 
 
 if __name__ == "__main__":
-    result = run_safety_agent("What safety measures are required for machine guarding??")
+    result = run_safety_agent("What hazards or safety risks does this document address?")
     print("ANSWER:", result["answer"])
     print("SOURCES:", result["sources"])
