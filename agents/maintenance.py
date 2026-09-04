@@ -16,8 +16,8 @@ clearly rather than guessing.
 """
 
 
-def run_maintenance_agent(question):
-    return run_agent(MAINTENANCE_ROLE_PROMPT, question)
+def run_maintenance_agent(question, source_filter=None):
+    return run_agent(MAINTENANCE_ROLE_PROMPT, question, source_filter=source_filter)
 
 
 if __name__ == "__main__":

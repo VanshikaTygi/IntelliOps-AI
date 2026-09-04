@@ -17,8 +17,8 @@ clearly rather than guessing.
 """
 
 
-def run_safety_agent(question):
-    return run_agent(SAFETY_ROLE_PROMPT, question)
+def run_safety_agent(question, source_filter=None):
+    return run_agent(SAFETY_ROLE_PROMPT, question, source_filter=source_filter)
 
 
 if __name__ == "__main__":

@@ -44,11 +44,11 @@ def route_question(question):
     return [name.strip() for name in raw_decision.split(",")]
 
 
-def get_supervised_answer(question):
+def get_supervised_answer(question, source_filter=None):
     agent_names = route_question(question)
 
     if not agent_names:
-        result = get_answer(question)
+        result = get_answer(question, source_filter=source_filter)
         return {
             "agents_used": ["general"],
             "responses": [{"agent": "general", "answer": result["answer"], "sources": result["sources"]}]
@@ -58,11 +58,11 @@ def get_supervised_answer(question):
 
     for name in agent_names:
         if name == "maintenance":
-            result = run_maintenance_agent(question)
+            result = run_maintenance_agent(question, source_filter=source_filter)
         elif name == "safety":
-            result = run_safety_agent(question)
+            result = run_safety_agent(question, source_filter=source_filter)
         elif name == "compliance":
-            result = run_compliance_agent(question)
+            result = run_compliance_agent(question, source_filter=source_filter)
         else:
             continue
 
@@ -72,7 +72,6 @@ def get_supervised_answer(question):
         "agents_used": agent_names,
         "responses": responses
     }
-
 
 if __name__ == "__main__":
     result = get_supervised_answer("What compliance responsibilities does this document outline for employers?")
