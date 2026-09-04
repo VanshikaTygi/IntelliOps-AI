@@ -3,8 +3,17 @@ from pathlib import Path
 from utils.pdf_loader import load_pdf
 from utils.text_chunker import chunk_text
 from utils.vector_store import add_chunks_to_store
+from ui.styling import load_custom_css
 
-st.header("📂 Upload Industrial Documents")
+load_custom_css()
+
+st.markdown("""
+    <div class="hero-banner">
+        <h1>📂 Upload Industrial Documents</h1>
+        <p>Add manuals, SOPs, maintenance reports, or safety documents.
+        Each file is automatically processed into searchable knowledge.</p>
+    </div>
+""", unsafe_allow_html=True)
 
 uploaded_files = st.file_uploader(
     "Upload one or more PDF files",
@@ -36,16 +45,10 @@ if uploaded_files:
             st.subheader("First 3 Chunks")
             for i, chunk in enumerate(chunks[:3]):
                 st.markdown(f"**Chunk {i+1}**")
-                st.text_area(
-                    label=f"Chunk {i+1}",
-                    value=chunk,
-                    height=150,
-                    key=f"{uploaded_file.name}_{i}"
-                )
-
+                st.text_area(label=f"Chunk {i+1}", value=chunk, height=150, key=f"{uploaded_file.name}_{i}")
             st.subheader("PDF Preview")
             st.text_area("Extracted Text", pdf_text[:3000], height=250)
 
-    st.subheader("Uploaded Files")
+    st.subheader("📁 Uploaded Files")
     for file in UPLOAD_DIR.iterdir():
-        st.write("📄", file.name)
+        st.markdown(f'<div class="status-card">📄 {file.name}</div>', unsafe_allow_html=True)
